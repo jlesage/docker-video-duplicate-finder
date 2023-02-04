@@ -1,0 +1,23 @@
+--- a/VDF.GUI/Views/MainWindow.xaml
++++ b/VDF.GUI/Views/MainWindow.xaml
+@@ -1741,16 +1743,20 @@
+                                             Text="Appearance" />
+                                     </TabItem.Header>
+                                     <StackPanel>
++<!-- Hide Windows only setting that never applies with a Docker container.
+                                         <CheckBox
+                                             VerticalAlignment="Center"
+                                             Content="Use Mica (Windows 11 only)¹"
+                                             IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}"
+                                             IsThreeState="False" />
++-->
++<!-- Dark mode is handled by the Docker container.
+                                         <CheckBox
+                                             VerticalAlignment="Center"
+                                             Content="Dark Mode¹"
+                                             IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}"
+                                             IsThreeState="False" />
++-->
+                                         <TextBlock
+                                             Margin="0,5,0,5"
+                                             VerticalAlignment="Center"

@@ -1,0 +1,12 @@
+Force the "current folder" to be `/config`, instead of the folder where reside VDF.
+--- a/VDF.Core/Utils/CoreUtils.cs
++++ b/VDF.Core/Utils/CoreUtils.cs
+@@ -22,7 +22,7 @@ namespace VDF.Core.Utils {
+ 		public static string CurrentFolder;
+ 		static CoreUtils() {
+ 			IsWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+-			CurrentFolder = Path.GetDirectoryName(typeof(CoreUtils).Assembly.Location)!;
++			CurrentFolder = "/config";
+ 		}
+ 	}
+ }

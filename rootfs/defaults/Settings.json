@@ -1,0 +1,5 @@
+{
+  "Includes":["/storage"],
+  "UseNativeFfmpegBinding":true,
+  "HardwareAccelerationMode":0
+}

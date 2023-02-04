@@ -1,0 +1,18 @@
+--- a/VDF.GUI/Views/MainWindow.xaml
++++ b/VDF.GUI/Views/MainWindow.xaml
+@@ -232,6 +232,7 @@
+                                         </MenuItem.Header>
+                                     </MenuItem>
+                                 </MenuItem>
++<!-- No need to show the "Latest Release" button: cannot launch URL in Docker container.
+                                 <MenuItem Command="{Binding LatestReleaseCommand}">
+                                     <MenuItem.Header>
+                                         <StackPanel Orientation="Horizontal">
+@@ -247,6 +248,7 @@
+                                         </StackPanel>
+                                     </MenuItem.Header>
+                                 </MenuItem>
++-->
+                                 <MenuItem Command="{Binding OpenOwnFolderCommand}" IsVisible="{Binding IsDebug}">
+                                     <MenuItem.Header>
+                                         <TextBlock

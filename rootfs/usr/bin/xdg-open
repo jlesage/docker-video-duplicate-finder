@@ -1,0 +1,29 @@
+#!/bin/sh
+
+ARG="$1"
+
+if [ -z "$ARG" ]; then
+    exit 1
+fi
+
+if [ -d "$ARG" ]; then
+    # We are trying to open a folder.
+    pcmanfm "$ARG" 2>/dev/null
+elif [ -f "$ARG" ] ; then
+    # We are trying to open a file.
+    # Check if the file is a video.
+    if [ "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_type -of csv=p=0 "$ARG" 2>/dev/null)" = "video" ]; then
+        # This is a video file.  Start playing with with ffplay.
+        # Use the current screen size to determine the size of the ffplay window.
+        DISPLAY_SIZE="$(obxprop --root | grep "^_NET_DESKTOP_GEOMETRY" | cut -d'=' -f2 | tr -d ',' | awk '{print $1; print $2}')"
+	X="$(echo "$DISPLAY_SIZE" | head -n1)"
+	Y="$(echo "$DISPLAY_SIZE" | tail -n1)"
+        ffplay -loglevel quiet -x "$(expr "$X" / 2)" -y "$(expr "$Y" / 2)" "$ARG" 2>/dev/null
+    else
+        # Not a video file: open the folder containing the file.
+        pcmanfm "$(dirname "$ARG")" 2>/dev/null
+    fi
+else
+    echo "don't know how to open: $ARG"
+    exit 1
+fi
