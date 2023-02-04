@@ -1,10 +1,10 @@
 --- a/VDF.GUI/Views/MainWindow.xaml
 +++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1741,16 +1743,20 @@
+@@ -1741,21 +1743,27 @@
                                              Text="Appearance" />
                                      </TabItem.Header>
                                      <StackPanel>
-+<!-- Hide Windows only setting that never applies with a Docker container.
++<!-- Windows-only setting never applies with a Docker container.
                                          <CheckBox
                                              VerticalAlignment="Center"
                                              Content="Use Mica (Windows 11 only)¹"
@@ -18,6 +18,13 @@
                                              IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}"
                                              IsThreeState="False" />
 +-->
++<!-- This text is not needed since all relevant settings are hidden with a Docker container.
                                          <TextBlock
                                              Margin="0,5,0,5"
                                              VerticalAlignment="Center"
+                                             Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                             Text="¹ Restart VDF to apply changes" />
++-->
+                                         <CheckBox
+                                             VerticalAlignment="Center"
+                                             Content="Show Thumbnail Column"
