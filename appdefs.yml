@@ -1,0 +1,45 @@
+---
+
+#
+# Definitions for Video Duplicate Finder docker container.
+#
+# This file is used as data source to generate README.md and unRAID template files
+# from Jinja2 templates.
+#
+
+app:
+  id: 20
+  name: video-duplicate-finder
+  friendly_name: Video Duplicate Finder
+  gui_type: x11
+  project:
+    description: |-
+      Video Duplicate Finder is a cross-platform software to find duplicated video (and
+      image) files on hard disk based on similiarity.  That means unlike other duplicate
+      finders, this one does also finds duplicates which have a different resolution,
+      frame rate and even watermarked.
+    url: https://github.com/0x90d/videoduplicatefinder
+  unraid:
+    support_url: https://forums.unraid.net/topic/134636-support-video-duplicate-finder/
+    category: "MediaApp:Video"
+  documentation:
+  changelog:
+    - version: 23.02.1
+      date: 2023-02-04
+      changes:
+        - 'Initial release.'
+
+container:
+  storage_permissions: rw
+
+  # Environment variables.
+  environment_variables: []
+
+  # Volumes
+  volumes: []
+
+  # Network ports
+  ports: []
+
+  # Devices
+  devices: []
