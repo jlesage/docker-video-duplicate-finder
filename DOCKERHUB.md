@@ -8,7 +8,7 @@ installation or configuration needed on the client side) or via any VNC client.
 
 ---
 
-[![Video Duplicate Finder logo](https://images.weserv.nl/?url=raw.githubusercontent.com/jlesage/docker-templates/master/jlesage/images/video-duplicate-finder-icon.png&w=110)](https://github.com/0x90d/videoduplicatefinder)[![Video Duplicate Finder](https://images.placeholders.dev/?width=704&height=110&fontFamily=Georgia,sans-serif&fontWeight=400&fontSize=52&text=Video%20Duplicate%20Finder&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://github.com/0x90d/videoduplicatefinder)
+[![Video Duplicate Finder logo](https://images.weserv.nl/?url=raw.githubusercontent.com/jlesage/docker-templates/master/jlesage/images/video-duplicate-finder-icon.png&w=110)](https://github.com/0x90d/videoduplicatefinder)[![Video Duplicate Finder](https://images.placeholders.dev/?width=704&height=110&fontFamily=monospace&fontWeight=400&fontSize=52&text=Video%20Duplicate%20Finder&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://github.com/0x90d/videoduplicatefinder)
 
 Video Duplicate Finder is a cross-platform software to find duplicated video (and
 image) files on hard disk based on similiarity.  That means unlike other duplicate
