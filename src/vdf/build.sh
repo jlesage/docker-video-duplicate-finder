@@ -22,7 +22,7 @@ fi
 apk --no-cache add \
     curl \
     patch \
-    dotnet6-sdk \
+    dotnet7-sdk \
 
 #
 # Download sources.
