@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question, discuss
+    url: https://github.com/jlesage/docker-video-duplicate-finder/discussions
+    about: Get help using this Docker container.
+  - name: Documentation
+    url: https://github.com/jlesage/docker-video-duplicate-finder#readme
+    about: Documentation about this Docker container.
