@@ -42,6 +42,7 @@ PATCHES="\
     disable-latest-release.patch \
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
+    ffmpeg-autogen-version.patch \
 "
 for PATCH in $PATCHES; do
     patch -p1 -d /tmp/vdf < "$SCRIPT_DIR"/"$PATCH"
