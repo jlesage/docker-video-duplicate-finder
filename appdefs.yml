@@ -24,6 +24,11 @@ app:
     category: "MediaApp:Video"
   documentation:
   changelog:
+    - version: 23.08.1
+      date: 2023-08-13
+      changes:
+        - 'Updated Video Duplicate Finder to version 3.0.x-424e8c6.'
+        - 'Fixed usage of native FFmpeg llibraries.'
     - version: 23.05.1
       date: 2023-05-27
       changes:
