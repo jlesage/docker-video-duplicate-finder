@@ -12,6 +12,7 @@ app:
   name: video-duplicate-finder
   friendly_name: Video Duplicate Finder
   gui_type: x11
+  base_os: alpine
   project:
     description: |-
       Video Duplicate Finder is a cross-platform software to find duplicated video (and
