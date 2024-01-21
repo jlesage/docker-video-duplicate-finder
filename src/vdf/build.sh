@@ -40,11 +40,13 @@ log "Patching Video Duplicate Finder..."
 PATCHES="\
     disable-appearance-settings.patch \
     disable-latest-release.patch \
+    disable-drag-and-drop-hint.patch \
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
     ffmpeg-autogen-version.patch \
 "
 for PATCH in $PATCHES; do
+    echo "Applying $PATCH..."
     patch -p1 -d /tmp/vdf < "$SCRIPT_DIR"/"$PATCH"
 done
 
