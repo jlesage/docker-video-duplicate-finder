@@ -4,7 +4,7 @@
  		async static void ExportDbToJson(JsonSerializerOptions options) {
  
  			var result = await Utils.PickerDialogUtils.SaveFilePicker(new FilePickerSaveOptions() {
-+				SuggestedStartLocation = new BclStorageFolder(CoreUtils.CurrentFolder),
++				SuggestedStartLocation = await ApplicationHelpers.MainWindow.StorageProvider.TryGetFolderFromPathAsync(CoreUtils.CurrentFolder),
  				DefaultExtension = ".json",
  				FileTypeChoices = new FilePickerFileType[] {
  					 new FilePickerFileType("Json Files") { Patterns = new string[] { "*.json" }}}
@@ -12,7 +12,7 @@
  		});
  		async void ExportScanResultsToJson(JsonSerializerOptions options) {
  			var result = await Utils.PickerDialogUtils.SaveFilePicker(new FilePickerSaveOptions() {
-+				SuggestedStartLocation = new BclStorageFolder(CoreUtils.CurrentFolder),
++				SuggestedStartLocation = await ApplicationHelpers.MainWindow.StorageProvider.TryGetFolderFromPathAsync(CoreUtils.CurrentFolder),
  				DefaultExtension = ".json",
  				FileTypeChoices = new FilePickerFileType[] {
  					 new FilePickerFileType("Json Files") { Patterns = new string[] { "*.json" }}}
@@ -22,7 +22,7 @@
  		});
  		public ReactiveCommand<Unit, Unit> SaveLogCommand => ReactiveCommand.CreateFromTask(async () => {
  			var result = await Utils.PickerDialogUtils.SaveFilePicker(new FilePickerSaveOptions() {
-+				SuggestedStartLocation = new BclStorageFolder(CoreUtils.CurrentFolder),
++				SuggestedStartLocation = await ApplicationHelpers.MainWindow.StorageProvider.TryGetFolderFromPathAsync(CoreUtils.CurrentFolder),
  				DefaultExtension = ".txt",
  			});
  			if (string.IsNullOrEmpty(result)) return;

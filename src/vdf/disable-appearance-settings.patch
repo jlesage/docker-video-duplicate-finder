@@ -1,6 +1,6 @@
 --- a/VDF.GUI/Views/MainWindow.xaml
 +++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1741,21 +1743,27 @@
+@@ -1658,21 +1658,27 @@
                                              Text="Appearance" />
                                      </TabItem.Header>
                                      <StackPanel>
@@ -22,7 +22,7 @@
                                          <TextBlock
                                              Margin="0,5,0,5"
                                              VerticalAlignment="Center"
-                                             Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                             Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
                                              Text="¹ Restart VDF to apply changes" />
 +-->
                                          <CheckBox
