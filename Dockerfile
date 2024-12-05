@@ -27,7 +27,7 @@ RUN /build/build.sh "$VIDEO_DUPLICATE_FINDER_URL"
 RUN xx-verify /tmp/vdf-install/VDF.GUI
 
 # Pull base image.
-FROM jlesage/baseimage-gui:alpine-3.17-v4.6.4
+FROM jlesage/baseimage-gui:alpine-3.17-v4.6.6
 
 ARG VIDEO_DUPLICATE_FINDER_VERSION
 ARG DOCKER_IMAGE_VERSION
