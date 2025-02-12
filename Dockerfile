@@ -8,17 +8,19 @@
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG VIDEO_DUPLICATE_FINDER_COMMIT_SHA=018ad52
+ARG VIDEO_DUPLICATE_FINDER_COMMIT_SHA=e253212
 ARG VIDEO_DUPLICATE_FINDER_VERSION=3.0.x-${VIDEO_DUPLICATE_FINDER_COMMIT_SHA}
+ARG FFMPEG_VERSION=7.1
 
 # Define software download URLs.
 ARG VIDEO_DUPLICATE_FINDER_URL=https://github.com/0x90d/videoduplicatefinder/archive/${VIDEO_DUPLICATE_FINDER_COMMIT_SHA}.tar.gz
+ARG FFMPEG_URL=https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz
 
 # Get Dockerfile cross-compilation helpers.
 FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
 
 # Build Video Duplicate Finder.
-FROM --platform=$BUILDPLATFORM alpine:3.17 AS vdf
+FROM --platform=$BUILDPLATFORM alpine:3.21 AS vdf
 ARG TARGETPLATFORM
 ARG VIDEO_DUPLICATE_FINDER_URL
 COPY --from=xx / /
@@ -26,9 +28,23 @@ COPY src/vdf /build
 RUN /build/build.sh "$VIDEO_DUPLICATE_FINDER_URL"
 RUN xx-verify /tmp/vdf-install/VDF.GUI
 
-# Pull base image.
-FROM jlesage/baseimage-gui:alpine-3.17-v4.7.1
+# Build FFmpeg.
+FROM --platform=$BUILDPLATFORM alpine:3.21 AS ffmpeg
+ARG TARGETPLATFORM
+ARG FFMPEG_URL
+COPY --from=xx / /
+COPY src/ffmpeg /build
+RUN /build/build.sh "$FFMPEG_URL"
+RUN xx-verify \
+    /tmp/ffmpeg-install/usr/bin/ffmpeg \
+    /tmp/ffmpeg-install/usr/bin/ffplay \
+    /tmp/ffmpeg-install/usr/bin/ffprobe \
+    /tmp/ffmpeg-install/usr/lib/lib*.so.*
 
+# Pull base image.
+FROM jlesage/baseimage-gui:alpine-3.21-v4.7.1
+
+ARG TARGETARCH
 ARG VIDEO_DUPLICATE_FINDER_VERSION
 ARG DOCKER_IMAGE_VERSION
 
@@ -36,14 +52,22 @@ ARG DOCKER_IMAGE_VERSION
 WORKDIR /tmp
 
 # Install dependencies.
-RUN add-pkg \
+RUN \
+    [ "${TARGETARCH:-amd64}" = "amd64" ] && _onevpl=onevpl-libs || _onevpl=; \
+    add-pkg \
         gtk+3.0 \
         icu-libs \
         libice \
         libsm \
+        libunwind \
+        sdl2 \
+        libdrm \
+        libpulse \
+        libva \
+        libvdpau \
+        $_onevpl \
         adwaita-icon-theme \
         font-dejavu \
-        ffmpeg \
         pcmanfm \
         jq \
         # Need for the `sponge` tool.
@@ -57,6 +81,10 @@ RUN \
 # Add files.
 COPY rootfs/ /
 COPY --from=vdf /tmp/vdf-install /opt/vdf
+COPY --from=ffmpeg /tmp/ffmpeg-install/usr/bin/ffmpeg /usr/bin/ffmpeg
+COPY --from=ffmpeg /tmp/ffmpeg-install/usr/bin/ffplay /usr/bin/ffplay
+COPY --from=ffmpeg /tmp/ffmpeg-install/usr/bin/ffprobe /usr/bin/ffprobe
+COPY --from=ffmpeg /tmp/ffmpeg-install/usr/lib /usr/lib
 
 # Set internal environment variables.
 RUN \

@@ -22,7 +22,7 @@ fi
 apk --no-cache add \
     curl \
     patch \
-    dotnet7-sdk \
+    dotnet9-sdk \
 
 #
 # Download sources.
@@ -43,7 +43,7 @@ PATCHES="\
     disable-drag-and-drop-hint.patch \
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
-    ffmpeg-autogen-version.patch \
+    dialog-window-owner-fix.patch \
 "
 for PATCH in $PATCHES; do
     echo "Applying $PATCH..."
@@ -58,13 +58,9 @@ case "$(xx-info arch)" in
     *) echo "ERROR: Unsupported arch: $(xx-info arch)." && exit 1;;
 esac
 
-# Determine RID from /etc/os-release.
-. /etc/os-release
-[ -n "${VERSION_ID//[^_]}" ] && runtime_id="alpine.${VERSION_ID%_*}-$dotnet_arch" || runtime_id="alpine.${VERSION_ID%.*}-$dotnet_arch"
-
 log "Building Video Duplicate Finder..."
 (
     cd /tmp/vdf && \
     dotnet nuget add source https://www.myget.org/F/sixlabors/api/v3/index.json
-    dotnet publish -c Release --self-contained -r "$runtime_id" -o /tmp/vdf-install
+    dotnet publish -c Release --self-contained -r "linux-musl-$dotnet_arch" -o /tmp/vdf-install
 )
