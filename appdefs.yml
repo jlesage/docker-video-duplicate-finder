@@ -25,6 +25,10 @@ app:
     category: "MediaApp:Video"
   documentation:
   changelog:
+    - version: 25.02.2
+      date: 2025-02-16
+      changes:
+        - 'Updated Video Duplicate Finder to version 3.0.x-e253212.'
     - version: 25.02.1
       date: 2025-02-09
       changes:
