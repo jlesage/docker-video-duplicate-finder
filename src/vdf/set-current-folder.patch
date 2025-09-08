@@ -5,7 +5,7 @@ Force the "current folder" to be `/config`, instead of the folder where reside V
  		public static string CurrentFolder;
  		static CoreUtils() {
  			IsWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
--			CurrentFolder = Path.GetDirectoryName(typeof(CoreUtils).Assembly.Location)!;
+-			CurrentFolder = Path.GetDirectoryName(Environment.ProcessPath)!;
 +			CurrentFolder = "/config";
  		}
  	}
