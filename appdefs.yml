@@ -25,6 +25,11 @@ app:
     category: "MediaApp:Video"
   documentation:
   changelog:
+    - version: 25.09.1
+      date: 2025-09-07
+      changes:
+        - 'Updated Video Duplicate Finder to version 3.0.x-5313fef.'
+        - 'Updated FFmpeg to version 7.1.1.'
     - version: 25.07.2
       date: 2025-07-28
       changes:
