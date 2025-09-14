@@ -43,7 +43,6 @@ PATCHES="\
     disable-drag-and-drop-hint.patch \
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
-    choose-algo-window-fix.patch \
 "
 for PATCH in $PATCHES; do
     echo "Applying $PATCH..."
