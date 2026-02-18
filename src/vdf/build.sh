@@ -5,7 +5,7 @@ set -u # Treat unset variables as an error.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-function log {
+log() {
     echo ">>> $*"
 }
 
