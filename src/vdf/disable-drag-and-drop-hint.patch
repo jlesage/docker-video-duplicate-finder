@@ -1,8 +1,6 @@
-diff --git a/VDF.GUI/Views/MainWindow.xaml b/VDF.GUI/Views/MainWindow.xaml
-index 33cea38..9591e97 100644
 --- a/VDF.GUI/Views/MainWindow.xaml
 +++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1397,11 +1397,13 @@
+@@ -1335,11 +1335,13 @@
                                                          BorderThickness="1"
                                                          DragDrop.AllowDrop="True"
                                                          ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Includes}" />
@@ -11,12 +9,12 @@ index 33cea38..9591e97 100644
                                                          Grid.Row="2"
                                                          Margin="5"
                                                          Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
-                                                         Text="Hint: You can also add folders with drag &amp; drop" />
+                                                         Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
 +-->
                                                  </Grid>
                                                  <TextBlock
                                                      Grid.Row="0"
-@@ -1467,11 +1469,13 @@
+@@ -1405,11 +1407,13 @@
                                                          BorderThickness="1"
                                                          DragDrop.AllowDrop="True"
                                                          ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Blacklists}" />
@@ -25,8 +23,24 @@ index 33cea38..9591e97 100644
                                                          Grid.Row="2"
                                                          Margin="5"
                                                          Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
-                                                         Text="Hint: You can also add folders with drag &amp; drop" />
+                                                         Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
 +-->
                                                  </Grid>
                                              </Grid>
                                          </Grid>
+--- a/VDF.GUI/Views/ChooseAlgoView.axaml
++++ b/VDF.GUI/Views/ChooseAlgoView.axaml
+@@ -81,11 +81,13 @@
+ 							MinHeight="200"
+ 							ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Includes}"
+ 							SelectionMode="Multiple" />
++<!-- Drag and drop not supported with Docker container.
+ 							<TextBlock
+ 							Grid.Row="2"
+ 							Margin="4,6,0,0"
+ 							Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
+ 							Text="{Binding Source={x:Static app:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
++-->
+ 						</Grid>
+ 					</StackPanel>
+ 				</Border>

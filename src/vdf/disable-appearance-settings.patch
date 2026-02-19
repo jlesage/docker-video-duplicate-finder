@@ -1,37 +1,23 @@
 --- a/VDF.GUI/Views/MainWindow.xaml
 +++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1467,16 +1467,20 @@
-                                             Text="Appearance" />
-                                     </TabItem.Header>
-                                     <StackPanel>
+@@ -1614,16 +1614,20 @@
+                                                 </ComboBox.ItemTemplate>
+                                             </ComboBox>
+                                         </StackPanel>
 +<!-- Windows-only setting never applies with a Docker container.
                                          <CheckBox
                                              VerticalAlignment="Center"
-                                             Content="Use Mica (Windows 11 only)¹"
+                                             Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.UseMica]}"
                                              IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}"
                                              IsThreeState="False" />
 +-->
 +<!-- Dark mode is handled by the Docker container.
                                          <CheckBox
                                              VerticalAlignment="Center"
-                                             Content="Dark Mode¹"
+                                             Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DarkMode]}"
                                              IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}"
                                              IsThreeState="False" />
 +-->
                                          <CheckBox
                                              VerticalAlignment="Center"
-                                             Content="Show Path Column¹"
-@@ -1502,11 +1506,13 @@
-                                             Content="Show Similarity Column¹"
-                                             IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=ShowSimilarityColumn}"
-                                             IsThreeState="False" />
-+<!-- This text is not needed since all relevant settings are hidden with a Docker container.
-                                         <TextBlock
-                                             Margin="0,5,0,5"
-                                             VerticalAlignment="Center"
-                                             Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
-                                             Text="¹ Restart VDF to apply changes" />
-+-->
-                                     </StackPanel>
-                                 </TabItem>
-                             </TabControl>
+                                             Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.ShowPathColumn]}"
