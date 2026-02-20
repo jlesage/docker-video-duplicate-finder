@@ -43,6 +43,7 @@ PATCHES="\
     disable-drag-and-drop-hint.patch \
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
+    disable-ffmpeg-download.patch \
 "
 for PATCH in $PATCHES; do
     echo "Applying $PATCH..."
