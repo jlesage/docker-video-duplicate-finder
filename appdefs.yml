@@ -25,6 +25,10 @@ app:
     category: "MediaApp:Video"
   documentation:
   changelog:
+    - version: 26.02.2
+      date: 2026-02-20
+      changes:
+        - 'Fixed FFmpeg not being found by updating its version to 8.0.1.'
     - version: 26.02.1
       date: 2026-02-19
       changes:
