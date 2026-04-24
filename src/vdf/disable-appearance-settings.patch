@@ -1,23 +1,18 @@
 --- a/VDF.GUI/Views/MainWindow.xaml
 +++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1614,16 +1614,20 @@
-                                                 </ComboBox.ItemTemplate>
-                                             </ComboBox>
-                                         </StackPanel>
-+<!-- Windows-only setting never applies with a Docker container.
-                                         <CheckBox
-                                             VerticalAlignment="Center"
-                                             Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.UseMica]}"
-                                             IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}"
-                                             IsThreeState="False" />
-+-->
+@@ -1821,11 +1821,15 @@
+                                                             </ComboBox.ItemTemplate>
+                                                         </ComboBox>
+                                                     </StackPanel>
 +<!-- Dark mode is handled by the Docker container.
-                                         <CheckBox
-                                             VerticalAlignment="Center"
-                                             Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DarkMode]}"
-                                             IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}"
-                                             IsThreeState="False" />
+                                                     <CheckBox Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DarkMode]}"
+                                                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}" IsThreeState="False" />
 +-->
-                                         <CheckBox
-                                             VerticalAlignment="Center"
-                                             Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.ShowPathColumn]}"
++<!-- Windows-only setting never applies with a Docker container.
+                                                     <CheckBox Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.UseMica]}"
+                                                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}" IsThreeState="False"
+                                                               ToolTip.Tip="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.RestartHint]}" />
++-->
+                                                     <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                                                         <TextBlock VerticalAlignment="Center"
+                                                                    Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.ThumbnailDoubleClick]}" />

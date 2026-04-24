@@ -1,32 +1,26 @@
 --- a/VDF.GUI/Views/MainWindow.xaml
 +++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1335,11 +1335,13 @@
-                                                         BorderThickness="1"
-                                                         DragDrop.AllowDrop="True"
-                                                         ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Includes}" />
+@@ -1494,8 +1494,10 @@
+                                                      DragDrop.AllowDrop="True"
+                                                      ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Includes}" />
+                                             <StackPanel Grid.Row="2">
 +<!-- Drag and drop not supported with Docker container.
-                                                     <TextBlock
-                                                         Grid.Row="2"
-                                                         Margin="5"
-                                                         Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
-                                                         Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
+                                                 <TextBlock Margin="5" TextWrapping="Wrap" Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
+                                                            Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
 +-->
-                                                 </Grid>
-                                                 <TextBlock
-                                                     Grid.Row="0"
-@@ -1405,11 +1407,13 @@
-                                                         BorderThickness="1"
-                                                         DragDrop.AllowDrop="True"
-                                                         ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Blacklists}" />
+                                                 <TextBlock Margin="5" TextWrapping="Wrap" Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
+                                                            Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.WildcardNote]}" />
+                                             </StackPanel>
+@@ -1564,8 +1566,10 @@
+                                             <ListBox Name="ListboxBlacklist" Grid.Row="1" BorderThickness="1"
+                                                      DragDrop.AllowDrop="True"
+                                                      ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Blacklists}" />
 +<!-- Drag and drop not supported with Docker container.
-                                                     <TextBlock
-                                                         Grid.Row="2"
-                                                         Margin="5"
-                                                         Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
-                                                         Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
+                                             <TextBlock Grid.Row="2" Margin="5" TextWrapping="Wrap" Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
+                                                        Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
 +-->
-                                                 </Grid>
-                                             </Grid>
+                                             <TextBlock Grid.Row="3" Margin="5" TextWrapping="Wrap" Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
+                                                        Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.WildcardNote]}" />
                                          </Grid>
 --- a/VDF.GUI/Views/ChooseAlgoView.axaml
 +++ b/VDF.GUI/Views/ChooseAlgoView.axaml
