@@ -52,7 +52,7 @@ _onevpl=
 case "$(xx-info arch)" in
     amd64)
         _onevpl="--enable-libvpl"
-        TARGET_PKGS="$TARGET_PKGS onevpl-dev"
+        TARGET_PKGS="$TARGET_PKGS libvpl-dev"
         ;;
     386)
         _asm="--disable-asm"

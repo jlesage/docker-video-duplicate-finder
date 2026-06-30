@@ -8,8 +8,8 @@
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG VIDEO_DUPLICATE_FINDER_COMMIT_SHA=ac7c1ad
-ARG VIDEO_DUPLICATE_FINDER_VERSION=3.0.x-${VIDEO_DUPLICATE_FINDER_COMMIT_SHA}
+ARG VIDEO_DUPLICATE_FINDER_COMMIT_SHA=a225a45
+ARG VIDEO_DUPLICATE_FINDER_VERSION=4.0.x-${VIDEO_DUPLICATE_FINDER_COMMIT_SHA}
 ARG FFMPEG_VERSION=8.0.1
 
 # Define software download URLs.
@@ -20,7 +20,7 @@ ARG FFMPEG_URL=https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz
 FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
 
 # Build Video Duplicate Finder.
-FROM --platform=$BUILDPLATFORM alpine:3.21 AS vdf
+FROM --platform=$BUILDPLATFORM alpine:3.24 AS vdf
 ARG TARGETPLATFORM
 ARG VIDEO_DUPLICATE_FINDER_URL
 COPY --from=xx / /
@@ -29,7 +29,7 @@ RUN /build/build.sh "$VIDEO_DUPLICATE_FINDER_URL"
 RUN xx-verify /tmp/vdf-install/VDF.GUI
 
 # Build FFmpeg.
-FROM --platform=$BUILDPLATFORM alpine:3.21 AS ffmpeg
+FROM --platform=$BUILDPLATFORM alpine:3.24 AS ffmpeg
 ARG TARGETPLATFORM
 ARG FFMPEG_URL
 COPY --from=xx / /
@@ -42,7 +42,7 @@ RUN xx-verify \
     /tmp/ffmpeg-install/usr/lib/lib*.so.*
 
 # Pull base image.
-FROM jlesage/baseimage-gui:alpine-3.21-v4.12.5
+FROM jlesage/baseimage-gui:alpine-3.24-v4.12.5
 
 ARG TARGETARCH
 ARG VIDEO_DUPLICATE_FINDER_VERSION
@@ -53,7 +53,7 @@ WORKDIR /tmp
 
 # Install dependencies.
 RUN \
-    [ "${TARGETARCH:-amd64}" = "amd64" ] && _onevpl=onevpl-libs || _onevpl=; \
+    [ "${TARGETARCH:-amd64}" = "amd64" ] && _onevpl=libvpl || _onevpl=; \
     add-pkg \
         gtk+3.0 \
         icu-libs \
@@ -67,6 +67,7 @@ RUN \
         libvdpau \
         $_onevpl \
         adwaita-icon-theme \
+        hicolor-icon-theme \
         font-dejavu \
         pcmanfm \
         jq \
@@ -78,7 +79,9 @@ RUN \
     cp /usr/share/icons/mate/22x22/actions/tab-new.png /usr/share/icons/hicolor/22x22/actions/ && \
     cp /usr/share/icons/mate/24x24/actions/tab-new.png /usr/share/icons/hicolor/24x24/actions/ && \
     del-pkg mate-icon-theme && \
+    add-pkg gtk-update-icon-cache && \
     gtk-update-icon-cache /usr/share/icons/hicolor && \
+    del-pkg gtk-update-icon-cache && \
     true
 
 # Generate and install favicons.
