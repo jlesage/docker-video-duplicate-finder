@@ -45,6 +45,7 @@ PATCHES="\
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
     disable-ffmpeg-download.patch \
+    use-system-onnxruntime.patch \
 "
 for PATCH in $PATCHES; do
     echo "Applying $PATCH..."

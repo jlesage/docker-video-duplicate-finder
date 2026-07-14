@@ -1,0 +1,83 @@
+#
+# Use a system-installed ONNX Runtime (e.g. Alpine onnxruntime package) instead of
+# downloading Microsoft's glibc-linked binary. Model download is unchanged.
+#
+--- a/VDF.Core/AI/AiComponents.cs
++++ b/VDF.Core/AI/AiComponents.cs
+@@ -65,7 +65,7 @@
+ 		static readonly object resolverLock = new();
+ 
+ 		public static AiComponentsState GetState() {
+-			bool runtime = FindRuntimeLibrary() != null && HasCurrentRuntimeVersion();
++			bool runtime = IsRuntimeAvailable();
+ 			bool model = File.Exists(ModelPath);
+ 			if (runtime && model) return AiComponentsState.Ready;
+ 			if (runtime) return AiComponentsState.ModelMissing;
+@@ -94,8 +94,22 @@
+ 			catch { return false; }
+ 		}
+ 
+-		/// <summary>The downloaded ONNX Runtime library file, or null when absent.</summary>
+-		internal static string? FindRuntimeLibrary() {
++		/// <summary>
++		/// True when a usable ONNX Runtime is present: either the pinned download in
++		/// AiFolder, or a system library (e.g. Alpine <c>onnxruntime</c> package).
++		/// </summary>
++		static bool IsRuntimeAvailable() {
++			if (FindSystemRuntimeLibrary() != null)
++				return true;
++			return FindAiFolderRuntimeLibrary() != null && HasCurrentRuntimeVersion();
++		}
++
++		/// <summary>The ONNX Runtime library path (AiFolder download or system), or null.</summary>
++		internal static string? FindRuntimeLibrary() =>
++			FindAiFolderRuntimeLibrary() ?? FindSystemRuntimeLibrary();
++
++		/// <summary>The downloaded ONNX Runtime library under AiFolder, or null when absent.</summary>
++		static string? FindAiFolderRuntimeLibrary() {
+ 			try {
+ 				if (!Directory.Exists(AiFolder)) return null;
+ 				// Windows: onnxruntime.dll — Linux: libonnxruntime.so.<ver> — macOS: libonnxruntime.<ver>.dylib
+@@ -112,6 +126,25 @@
+ 					.FirstOrDefault();
+ 			}
+ 			catch { return null; }
++		}
++
++		/// <summary>
++		/// System-installed ONNX Runtime (musl-friendly Alpine package, distro lib, etc.).
++		/// </summary>
++		static string? FindSystemRuntimeLibrary() {
++			string[] candidates = [
++				"/usr/lib/libonnxruntime.so.1",
++				"/usr/lib/libonnxruntime.so",
++				"/lib/libonnxruntime.so.1",
++				"/lib/libonnxruntime.so",
++				"/usr/local/lib/libonnxruntime.so.1",
++				"/usr/local/lib/libonnxruntime.so",
++			];
++			foreach (string path in candidates) {
++				if (File.Exists(path))
++					return path;
++			}
++			return null;
+ 		}
+ 
+ 		/// <summary>
+@@ -151,14 +184,12 @@
+ 			return (new Uri($"https://github.com/microsoft/onnxruntime/releases/download/v{RuntimeVersion}/{file}"), file);
+ 		}
+ 
+-		/// <summary>Downloads whatever is missing (runtime and/or model). Safe to call when Ready.</summary>
++		/// <summary>Downloads the AI model when missing. ONNX Runtime is not downloaded (system lib).</summary>
+ 		public static async Task DownloadAsync(IProgress<AiDownloadProgress>? progress, CancellationToken token) {
+ 			Directory.CreateDirectory(AiFolder);
+ 			using var http = new HttpClient { Timeout = TimeSpan.FromMinutes(15) };
+ 
+-			var downloads = new List<Func<CancellationToken, Task>>(2);
+-			if (FindRuntimeLibrary() == null || !HasCurrentRuntimeVersion())
+-				downloads.Add(ct => DownloadRuntimeAsync(http, progress, ct));
++			var downloads = new List<Func<CancellationToken, Task>>(1);
+ 			if (!File.Exists(ModelPath))
+ 				downloads.Add(ct => DownloadModelAsync(http, progress, ct));
+ 			// The two archives come from different hosts (onnxruntime GitHub release vs

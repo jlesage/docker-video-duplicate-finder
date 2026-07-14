@@ -72,7 +72,10 @@ RUN \
         pcmanfm \
         jq \
         # Need for the `sponge` tool.
-        moreutils && \
+        moreutils \
+        # ONNX Runtime for AI matching.
+        onnxruntime \
+        && \
     # Fix for pcmanfm using "tab-new" icon, missing in Adwaita and hicolor themes.
     add-pkg mate-icon-theme && \
     cp /usr/share/icons/mate/16x16/actions/tab-new.png /usr/share/icons/hicolor/16x16/actions/ && \
