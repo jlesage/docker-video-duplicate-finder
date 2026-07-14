@@ -1,0 +1,29 @@
+--- a/VDF.GUI/Views/SettingsView.xaml
++++ b/VDF.GUI/Views/SettingsView.xaml
+@@ -511,8 +511,10 @@
+                            ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Blacklists}" />
+                 </StackPanel>
+               </Grid>
++<!-- Drag and drop not supported with Docker container.
+               <TextBlock Margin="0,10,0,0" FontSize="12" Opacity="0.55" TextWrapping="Wrap"
+                          Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
++-->
+               <TextBlock Margin="0,4,0,0" FontSize="12" Opacity="0.55" TextWrapping="Wrap"
+                          Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.WildcardNote]}" />
+             </StackPanel>
+--- a/VDF.GUI/Views/ChooseAlgoView.axaml
++++ b/VDF.GUI/Views/ChooseAlgoView.axaml
+@@ -83,11 +83,13 @@
+ 							MinHeight="200"
+ 							ItemsSource="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Includes}"
+ 							SelectionMode="Multiple" />
++<!-- Drag and drop not supported with Docker container.
+ 							<TextBlock
+ 							Grid.Row="2"
+ 							Margin="4,6,0,0"
+ 							Foreground="{actipro:ThemeResource ControlBackgroundBrushSolidWarning}"
+ 							Text="{Binding Source={x:Static app:App.Lang}, Path=[MainWindow.Settings.DragDropHint]}" />
++-->
+ 						</Grid>
+ 					</StackPanel>
+ 				</Border>

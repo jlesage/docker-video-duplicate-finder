@@ -40,6 +40,7 @@ log "Patching Video Duplicate Finder..."
 PATCHES="\
     disable-appearance-settings.patch \
     disable-latest-release.patch \
+    disable-drag-and-drop-hint.patch \
     fix-about-window-owner.patch \
     set-current-folder.patch \
     file-picker-suggested-start-location.patch \
