@@ -54,7 +54,7 @@ done
 case "$(xx-info arch)" in
     amd64) dotnet_arch=x64;;
     arm64) dotnet_arch=arm64;;
-    arm) dotnet_arch=arm;;
+    arm)   dotnet_arch=arm;;
     *) echo "ERROR: Unsupported arch: $(xx-info arch)." && exit 1;;
 esac
 
@@ -62,5 +62,9 @@ log "Building Video Duplicate Finder..."
 (
     cd /tmp/vdf && \
     dotnet nuget add source https://www.myget.org/F/sixlabors/api/v3/index.json
-    dotnet publish -c Release --self-contained -r "linux-musl-$dotnet_arch" -o /tmp/vdf-install
+    dotnet publish VDF.GUI/VDF.GUI.csproj \
+        -c Release \
+        --self-contained \
+        -r "linux-musl-$dotnet_arch" \
+        -o /tmp/vdf-install
 )
