@@ -1,18 +1,15 @@
---- a/VDF.GUI/Views/MainWindow.xaml
-+++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -232,6 +232,7 @@
-                                         </MenuItem.Header>
-                                     </MenuItem>
-                                 </MenuItem>
+--- a/VDF.GUI/Views/AboutWindow.xaml
++++ b/VDF.GUI/Views/AboutWindow.xaml
+@@ -49,10 +49,12 @@
+                 x:Name="ProjectPageButton"
+                 Margin="4"
+                 Click="OnProjectPage" />
 +<!-- No need to show the "Latest Release" button: cannot launch URL in Docker container.
-                                 <MenuItem Command="{Binding LatestReleaseCommand}">
-                                     <MenuItem.Header>
-                                         <StackPanel Orientation="Horizontal">
-@@ -247,6 +248,7 @@
-                                         </StackPanel>
-                                     </MenuItem.Header>
-                                 </MenuItem>
+             <Button
+                 x:Name="LatestReleaseButton"
+                 Margin="4"
+                 Click="OnLatestRelease" />
 +-->
-                                 <MenuItem Command="{Binding OpenOwnFolderCommand}" IsVisible="{Binding IsDebug}">
-                                     <MenuItem.Header>
-                                         <TextBlock
+             <Button
+                 x:Name="CopyButton"
+                 Margin="4"

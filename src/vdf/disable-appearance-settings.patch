@@ -1,18 +1,28 @@
---- a/VDF.GUI/Views/MainWindow.xaml
-+++ b/VDF.GUI/Views/MainWindow.xaml
-@@ -1821,11 +1821,15 @@
-                                                             </ComboBox.ItemTemplate>
-                                                         </ComboBox>
-                                                     </StackPanel>
+--- a/VDF.GUI/Views/SettingsView.xaml
++++ b/VDF.GUI/Views/SettingsView.xaml
+@@ -823,6 +823,7 @@
+                 </ComboBox>
+               </views:SettingRow>
+ 
 +<!-- Dark mode is handled by the Docker container.
-                                                     <CheckBox Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.DarkMode]}"
-                                                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}" IsThreeState="False" />
+               <views:SettingRow
+                   Title="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.DarkMode.Title]}"
+                   Description="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.DarkMode.Desc]}"
+@@ -830,7 +831,8 @@
+                 <ToggleSwitch Classes="plain"
+                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}" />
+               </views:SettingRow>
+-
 +-->
 +<!-- Windows-only setting never applies with a Docker container.
-                                                     <CheckBox Content="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.UseMica]}"
-                                                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}" IsThreeState="False"
-                                                               ToolTip.Tip="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.RestartHint]}" />
+               <views:SettingRow
+                   Title="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.UseMica.Title]}"
+                   Description="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.UseMica.Desc]}"
+@@ -838,6 +840,7 @@
+                 <ToggleSwitch Classes="plain"
+                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}" />
+               </views:SettingRow>
 +-->
-                                                     <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
-                                                         <TextBlock VerticalAlignment="Center"
-                                                                    Text="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.ThumbnailDoubleClick]}" />
+ 
+               <views:SettingRow
+                   Title="{Binding Source={x:Static local:App.Lang}, Path=[MainWindow.Settings.ThumbnailDoubleClick]}"

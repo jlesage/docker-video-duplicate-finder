@@ -1,12 +1,12 @@
 Force the "current folder" to be `/config`, instead of the folder where reside VDF.
 --- a/VDF.Core/Utils/CoreUtils.cs
 +++ b/VDF.Core/Utils/CoreUtils.cs
-@@ -22,7 +22,7 @@ namespace VDF.Core.Utils {
+@@ -22,7 +22,7 @@
  		public static string CurrentFolder;
  		static CoreUtils() {
  			IsWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 -			CurrentFolder = Path.GetDirectoryName(Environment.ProcessPath)!;
 +			CurrentFolder = "/config";
  		}
- 	}
- }
+ 
+ 		static readonly Lazy<string> _StateFolder = new(ResolveStateFolder);

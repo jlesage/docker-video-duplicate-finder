@@ -1,17 +1,17 @@
 --- a/VDF.GUI/ViewModels/MainWindowVM.cs
 +++ b/VDF.GUI/ViewModels/MainWindowVM.cs
-@@ -759,6 +759,7 @@ namespace VDF.GUI.ViewModels {
- 		async static void ExportDbToJson(JsonSerializerOptions options) {
+@@ -850,6 +850,7 @@
  
+ 		async static void ExportDbToJson(JsonSerializerOptions options) {
  			var result = await Utils.PickerDialogUtils.SaveFilePicker(new FilePickerSaveOptions() {
 +				SuggestedStartLocation = await ApplicationHelpers.MainWindow.StorageProvider.TryGetFolderFromPathAsync(CoreUtils.CurrentFolder),
  				DefaultExtension = ".json",
  				FileTypeChoices = [new FilePickerFileType("Json Files") { Patterns = ["*.json"] }]
  			});
---- a/VDF.GUI/ViewModels/MainWindowVM_Settings.cs
-+++ b/VDF.GUI/ViewModels/MainWindowVM_Settings.cs
-@@ -148,6 +148,7 @@ namespace VDF.GUI.ViewModels {
- 		});
+--- a/VDF.GUI/ViewModels/MainWindowVM_Log.cs
++++ b/VDF.GUI/ViewModels/MainWindowVM_Log.cs
+@@ -139,6 +139,7 @@
+ 
  		public ReactiveCommand<Unit, Unit> SaveLogCommand => ReactiveCommand.CreateFromTask(async () => {
  			var result = await Utils.PickerDialogUtils.SaveFilePicker(new FilePickerSaveOptions() {
 +				SuggestedStartLocation = await ApplicationHelpers.MainWindow.StorageProvider.TryGetFolderFromPathAsync(CoreUtils.CurrentFolder),
