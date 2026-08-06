@@ -42,7 +42,7 @@ RUN xx-verify \
     /tmp/ffmpeg-install/usr/lib/lib*.so.*
 
 # Pull base image.
-FROM jlesage/baseimage-gui:alpine-3.24-v4.12.6
+FROM jlesage/baseimage-gui:alpine-3.24-v4.13.0
 
 ARG TARGETARCH
 ARG VIDEO_DUPLICATE_FINDER_VERSION
