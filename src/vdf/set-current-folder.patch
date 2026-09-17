@@ -5,8 +5,8 @@ Force the "current folder" to be `/config`, instead of the folder where reside V
  		public static string CurrentFolder;
  		static CoreUtils() {
  			IsWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
--			CurrentFolder = Path.GetDirectoryName(Environment.ProcessPath)!;
+-			CurrentFolder = AppContext.BaseDirectory;
 +			CurrentFolder = "/config";
  		}
  
- 		static readonly Lazy<string> _StateFolder = new(ResolveStateFolder);
+ 		/// <summary>
