@@ -10,9 +10,15 @@ log() {
 }
 
 VIDEO_DUPLICATE_FINDER_URL="${1:-}"
+VIDEO_DUPLICATE_FINDER_VERSION="${2:-}"
 
 if [ -z "$VIDEO_DUPLICATE_FINDER_URL" ]; then
     log "ERROR: Video Duplicate Finder URL missing."
+    exit 1
+fi
+
+if [ -z "$VIDEO_DUPLICATE_FINDER_VERSION" ]; then
+    log "ERROR: Video Duplicate Finder version missing."
     exit 1
 fi
 
@@ -68,5 +74,6 @@ log "Building Video Duplicate Finder..."
         -c Release \
         --self-contained \
         -r "linux-musl-$dotnet_arch" \
+        -p:VersionPrefix="$VIDEO_DUPLICATE_FINDER_VERSION" \
         -o /tmp/vdf-install
 )

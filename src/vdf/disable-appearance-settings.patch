@@ -1,24 +1,30 @@
 --- a/VDF.GUI/Views/SettingsView.xaml
 +++ b/VDF.GUI/Views/SettingsView.xaml
-@@ -823,6 +823,7 @@
+@@ -900,6 +900,7 @@
                  </ComboBox>
                </views:SettingRow>
  
 +<!-- Dark mode is handled by the Docker container.
                <views:SettingRow
-                   Title="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.DarkMode.Title]}"
-                   Description="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.DarkMode.Desc]}"
-@@ -830,7 +831,8 @@
-                 <ToggleSwitch Classes="plain"
-                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=DarkMode}" />
+                   Title="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.Theme.Title]}"
+                   Description="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.Theme.Desc]}"
+@@ -914,6 +915,7 @@
+                   </ComboBox.ItemTemplate>
+                 </ComboBox>
                </views:SettingRow>
--
 +-->
+ 
+               <views:SettingRow
+                   Title="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.UiScale.Title]}"
+@@ -946,6 +948,7 @@
+                               IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=AlwaysReduceMotion}" />
+               </views:SettingRow>
+ 
 +<!-- Windows-only setting never applies with a Docker container.
                <views:SettingRow
                    Title="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.UseMica.Title]}"
                    Description="{Binding Source={x:Static local:App.Lang}, Path=[Settings.Row.UseMica.Desc]}"
-@@ -838,6 +840,7 @@
+@@ -953,6 +956,7 @@
                  <ToggleSwitch Classes="plain"
                                IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseMica}" />
                </views:SettingRow>

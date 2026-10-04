@@ -7,11 +7,13 @@ set -u # Treat unset variables as an error.
 [ -f /config/Settings.json ] || cp /defaults/Settings.json /config/Settings.json
 
 # Handle dark mode.
+# ThemeMode: 1 = Light, 2 = Dark. DarkMode is the legacy switch and is ignored
+# once ThemeMode is set.
 if is-bool-val-true "${DARK_MODE:-0}"; then
-    DARKMODE_VAL="true"
+    THEME_VAL=2
 else
-    DARKMODE_VAL="false"
+    THEME_VAL=1
 fi
-jq -c -M ".DarkMode = $DARKMODE_VAL" /config/Settings.json | sponge /config/Settings.json
+jq -c -M "del(.DarkMode) | .ThemeMode = $THEME_VAL" /config/Settings.json | sponge /config/Settings.json
 
 # vim:ft=sh:ts=4:sw=4:et:sts=4
